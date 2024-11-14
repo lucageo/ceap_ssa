@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Education</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js"></script>
+<script src="https://unpkg.com/@mapbox/sphericalmercator@1.1.0/sphericalmercator.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css" rel="stylesheet" />
+    <style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+    #menu {
+position: absolute;
+background: #efefef;
+padding: 10px;
+font-family: 'Open Sans', sans-serif;
+}
+    </style>
+</head>
+<body>
+<div id="map"></div>
+<div id="menu">
+    <input id="satellite-v9" type="radio" name="rtoggle" value="satellite" checked="checked">
+    <!-- See a list of Mapbox-hosted public styles at -->
+    <!-- https://docs.mapbox.com/api/maps/styles/#mapbox-styles -->
+    <label for="satellite-v9">satellite</label>
+    <input id="light-v10" type="radio" name="rtoggle" value="light">
+    <label for="light-v10">light</label>
+    <input id="dark-v10" type="radio" name="rtoggle" value="dark">
+    <label for="dark-v10">dark</label>
+    <input id="streets-v11" type="radio" name="rtoggle" value="streets">
+    <label for="streets-v11">streets</label>
+    <input id="outdoors-v11" type="radio" name="rtoggle" value="outdoors">
+    <label for="outdoors-v11">outdoors</label>
+    </div>
+<script>
+    function getExtentCoordinatesFromBounds(bounds) {
+      return [
+        bounds.getNorthWest().toArray(),
+        bounds.getNorthEast().toArray(),
+        bounds.getSouthEast().toArray(),
+        bounds.getSouthWest().toArray()
+      ];
+    }
+    function wmsExtent130FromBounds(bounds) {
+      var sm = new SphericalMercator({
+        size: 256
+      });
+      return [
+        ...sm.forward(bounds.getSouthWest().toArray()),
+        ...sm.forward(bounds.getNorthEast().toArray())
+      ];
+    }
+    function addSingleWms(map, baseUrl) {
+      return function() {
+        var myCanvas = map.getCanvas();
+        var myBounds = map.getBounds();
+        var imageCoordinates = getExtentCoordinatesFromBounds(myBounds);
+        var imageExtent3857 = wmsExtent130FromBounds(myBounds);
+        if (map.getSource(sourceName) && map.getLayer(wmsLayerName)) {
+            map.removeLayer(wmsLayerName);
+            map.removeSource(sourceName);
+        }
+        var urlWms = `${baseUrl}?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image/png&TRANSPARENT=true&LAYERS=africa_platform%3Anat_areas4326&CRS=EPSG:3857&STYLES=&FORMAT_OPTIONS=dpi:180&WIDTH=${myCanvas.width / window.devicePixelRatio}&HEIGHT=${myCanvas.height / window.devicePixelRatio}&BBOX=${imageExtent3857.join(',')}`;
+        map.addSource(sourceName, {
+          'type': 'image',
+          'url': urlWms,
+          'coordinates': imageCoordinates
+        });
+        map.addLayer({
+          'id': wmsLayerName,
+          'type': 'raster',
+          'source': sourceName,
+          'paint': {
+            'raster-opacity':0.5
+          }
+        });
+      }
+    }
+
+	mapboxgl.accessToken = 'pk.eyJ1IjoiZ2lzZGV2ZWxvcG1hcCIsImEiOiJjamZrdmp3bWYwY280MndteDg1dGlmdzF3In0.4m2zz_ISrUCXyz27MdL8_Q';
+var map = new mapboxgl.Map({
+container: 'map', // container ID
+// Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+style: 'mapbox://styles/mapbox/light-v10', // style URL
+center:  [2.2643037006552946, 9.62901779993326], // starting position [lng, lat]
+zoom: 5.7, // starting zoom
+preserveDrawingBuffer: true
+});
+const layerList = document.getElementById('menu');
+const inputs = layerList.getElementsByTagName('input');
+ 
+for (const input of inputs) {
+input.onclick = (layer) => {
+const layerId = layer.target.id;
+map.setStyle('mapbox://styles/mapbox/' + layerId);
+};
+}
+    var sourceName = 'wms-test-source';
+    var wmsLayerName = 'wms-test-layer';
+    var baseUrl = 'https://geospatial.jrc.ec.europa.eu/geoserver/wms';
+    map.on('load', addSingleWms(map, baseUrl));
+    map.on('moveend', addSingleWms(map, baseUrl));
+</script>
+ 
+</body>
+</html>

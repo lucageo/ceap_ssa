@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>Clean Energy Prioritiser</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <!-- <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js'></script> -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js'></script>
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
+  <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css' rel='stylesheet' />
+  <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.0.4/wNumb.min.js'></script>
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/highcharts-more.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+  <!-- <script src='https://api.mapbox.com/mapbox.js/plugins/turf/v2.0.2/turf.min.js'></script> -->
+  <script src='src/js/mapbox-gl-draw.js'></script>
+  <script src='src/js/busyLoad.js'></script>
+
+  <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v0.18.0/mapbox-gl-draw.css' type='text/css'/>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
+  <!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" **defer**></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+<link rel='stylesheet' href='src/css/geocoder.css' type='text/css' />
+  <script src='src/js/mapbox-gl-draw-rectangle-mode.min.js'></script>
+
+  <link href="src/css/busyLoad.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="app/app.css" rel="stylesheet">
+</head>
+<body>
+
+    <div id="modal-edu_no_e" class="modal">
+    <div class="modal-content">
+    <h4>Educational facilities without electicity</h4> <br>
+    <b>ABSTRACT</b>
+    <p>Education is widely recognized as one of the most essential components for poverty reduction. Education infrastructure in Sub-Saharan Africa is one of the social sectors with less access to electricity, only 35.1% of Sub-Saharan African primary schools have access to electricity and half of secondary schools in sub-Saharan Africa do not have power.  Irrespective of this evidence, there is a lack of systematic, recently updated data on which schools are with or without access to electricity and hence a limited awareness of the electrification status. Consequently, it can be difficult to prioritise the provision of reliable electricity when planning and implementing energy investments to the education sector in rural areas
+    The dataset collects geolocation of schools (primary and secondary) with the current situation of access to electricity with a binary description (With electricity access WEA, Non electricity access NEA).</p>
+    <br><b>DATA PROVIDER</b>
+    <p>European Commission - Joint Research Centre and UNICEF</p>
+    <br><b>TECHNICAL BACKGROUND</b>
+    <p>This datasets are obtained using a series of proxies, combining satellite data, use deep-learning methods, national statistical data, and several open-source data, as further described in the upcoming publication (2023)</p>
+    <br><b>RELATED SDGs </b>
+    <p>GOAL 4</p>
+    <br>
+    <a href="https://lucageo.github.io/cep/single_maps/edu_no_e.html" target="_blank" class="explore-btn waves-effect waves-light btn-small"><i class="material-icons right">explore</i>Explore</a>
+    <br>
+    <a href="https://geospatial.jrc.ec.europa.eu/geoserver/africa_platform/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=africa_platform:benin_schools_no_e_4326&outputformat=SHAPE-ZIP" target="_blank" class="download-btn waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_down</i>Download</a>
+    </p>
+    </div>
+    </div>
+    <div id="modal-education" class="modal">
+      <div class="modal-content">
+      <h4>Educational facilities</h4> <br>
+      <b>ABSTRACT</b>
+      <p>Education is widely recognized as one of the most essential components for poverty reduction. Education infrastructure in Sub-Saharan Africa is one of the social sectors with less access to electricity, only 35.1% of Sub-Saharan African primary schools have access to electricity and half of secondary schools in sub-Saharan Africa do not have power.  Irrespective of this evidence, there is a lack of systematic, recently updated data on which schools are with or without access to electricity and hence a limited awareness of the electrification status. Consequently, it can be difficult to prioritise the provision of reliable electricity when planning and implementing energy investments to the education sector in rural areas
+      The dataset collects geolocation of schools (primary and secondary) with the current situation of access to electricity with a binary description (With electricity access WEA, Non electricity access NEA).</p>
+      <br><b>DATA PROVIDER</b>
+      <p>European Commission - Joint Research Centre and UNICEF</p>
+      <br><b>TECHNICAL BACKGROUND</b>
+      <p>This datasets are obtained using a series of proxies, combining satellite data, use deep-learning methods, national statistical data, and several open-source data, as further described in the upcoming publication (2023)</p>
+      <br><b>RELATED SDGs </b>
+      <p>GOAL 4</p>
+      <br>
+      <a href="https://lucageo.github.io/cep/single_maps/education.html" target="_blank" class="explore-btn waves-effect waves-light btn-small"><i class="material-icons right">explore</i>Explore</a>
+      <br>
+      <a href="https://geospatial.jrc.ec.europa.eu/geoserver/africa_platform/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=africa_platform:benin_schools_4326&outputformat=SHAPE-ZIP" target="_blank" class="download-btn waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_down</i>Download</a>
+      </p>
+      </div>
+      </div>
+    <div id="modal-access" class="modal">
+    <div class="modal-content">
+    <h4>Travel time to major cities</h4> <br>
+    <b>ABSTRACT</b>
+    <p>The world is shrinking. Cheap flights, large scale commercial shipping and expanding road networks all mean that we are better connected to everywhere else than ever before. Accessibility - whether it is to markets, schools, hospitals or water - is a precondition for the satisfaction of almost any economic need. The new map of Travel Time to Major Cities -developed by the European Commission and the World Bank- captures this connectivity and the concentration of economic activity. It also highlights that there is little wilderness left. The map shows the travel time (in hours/days) to major cities (i.e. cities of 50,000 or more people in year 2000) using land (road/off road) or water (navigable river, lake and ocean) based travel.</p>
+    <br><b>DATA PROVIDER</b>
+    <p>European Commission - Joint Research Centre</p>
+    <br><b>TECHNICAL BACKGROUND</b>
+    <p>This map was made for the World Bank's World Development Report 2009 "Reshaping Economic Geography". Accessibility is defined as the travel time to a location of interest using land (road/off road) or water (navigable river, lake and ocean) based travel. Each pixel value on the map represents the travel time to the nearest city of 50,000 or more people in year 2000. For a description of the model and data sources used, visit https://forobs.jrc.ec.europa.eu/products/gam/description.php</p>
+    <br><b>RELATED SDGs </b>
+    <p>GOAL 7, GOAL 11, GOAL 13</p>
+    <br>
+    <a href="https://lucageo.github.io/cep/single_maps/access.html" target="_blank" class="explore-btn waves-effect waves-light btn-small"><i class="material-icons right">explore</i>Explore</a>
+    <br>
+    <a href="https://geospatial.jrc.ec.europa.eu/geoserver/africa_platform/wcs?service=WCS&version=2.0.1&request=GetCoverage&CoverageId=africa_platform:travel_time_sec_africa&format=image/tiff" target="_blank" class="download-btn waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_down</i>Download</a>
+    </p>
+    </div>
+    </div>
+    <div id="modal-access_inv" class="modal">
+    <div class="modal-content">
+    <h4>Travel time to major cities</h4> <br>
+    <b>ABSTRACT</b>
+    <p>The world is shrinking. Cheap flights, large scale commercial shipping and expanding road networks all mean that we are better connected to everywhere else than ever before. Accessibility - whether it is to markets, schools, hospitals or water - is a precondition for the satisfaction of almost any economic need. The new map of Travel Time to Major Cities -developed by the European Commission and the World Bank- captures this connectivity and the concentration of economic activity. It also highlights that there is little wilderness left. The map shows the travel time (in hours/days) to major cities (i.e. cities of 50,000 or more people in year 2000) using land (road/off road) or water (navigable river, lake and ocean) based travel.</p>
+    <br><b>DATA PROVIDER</b>
+    <p>European Commission - Joint Research Centre</p>
+    <br><b>TECHNICAL BACKGROUND</b>
+    <p>This map was made for the World Bank's World Development Report 2009 "Reshaping Economic Geography". Accessibility is defined as the travel time to a location of interest using land (road/off road) or water (navigable river, lake and ocean) based travel. Each pixel value on the map represents the travel time to the nearest city of 50,000 or more people in year 2000. For a description of the model and data sources used, visit https://forobs.jrc.ec.europa.eu/products/gam/description.php</p>
+    <br><b>RELATED SDGs </b>
+    <p>GOAL 7, GOAL 11, GOAL 13</p>
+    <br>
+    <a href="https://lucageo.github.io/cep/single_maps/access.html" target="_blank" class="explore-btn waves-effect waves-light btn-small"><i class="material-icons right">explore</i>Explore</a>
+    <br>
+    <a href="https://geospatial.jrc.ec.europa.eu/geoserver/africa_platform/wcs?service=WCS&version=2.0.1&request=GetCoverage&CoverageId=africa_platform:travel_time_sec_africa&format=image/tiff" target="_blank" class="download-btn waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_down</i>Download</a>
+    </p>
+    </div>
+    </div>
+    <div id="modal-distance" class="modal">
+    <div class="modal-content">
+    <h4>Distance from Grid</h4> <br>
+    <b>ABSTRACT</b>
+    <p>The world is shrinking. Cheap flights, large scale commercial shipping and expanding road networks all mean that we are better connected to everywhere else than ever before. Accessibility - whether it is to markets, schools, hospitals or water - is a precondition for the satisfaction of almost any economic need. The new map of Travel Time to Major Cities -developed by the European Commission and the World Bank- captures this connectivity and the concentration of economic activity. It also highlights that there is little wilderness left. The map shows the travel time (in hours/days) to major cities (i.e. cities of 50,000 or more people in year 2000) using land (road/off road) or water (navigable river, lake and ocean) based travel.</p>
+    <br><b>DATA PROVIDER</b>
+    <p>European Commission - Joint Research Centre</p>
+    <br><b>TECHNICAL BACKGROUND</b>
+    <p>This map was made for the World Bank's World Development Report 2009 "Reshaping Economic Geography". Accessibility is defined as the travel time to a location of interest using land (road/off road) or water (navigable river, lake and ocean) based travel. Each pixel value on the map represents the travel time to the nearest city of 50,000 or more people in year 2000. For a description of the model and data sources used, visit https://forobs.jrc.ec.europa.eu/products/gam/description.php</p>
+    <br><b>RELATED SDGs </b>
+    <p>GOAL 7, GOAL 11, GOAL 13</p>
+    <br>
+    <a href="https://lucageo.github.io/cep/single_maps/distance.html" target="_blank" class="explore-btn waves-effect waves-light btn-small"><i class="material-icons right">explore</i>Explore</a>
+    <br>
+    <a href="https://geospatial.jrc.ec.europa.eu/geoserver/hotspots/wcs?service=WCS&version=2.0.1&request=GetCoverage&CoverageId=hotspots%3Adistance_africa_05092022&format=image/tiff" target="_blank" class="download-btn waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_down</i>Download</a>
+    </p>
+    </div>
+    </div>
+    <div id="modal-distance_inv" class="modal">
+    <div class="modal-content">
+    <h4>Distance from Grid</h4> <br>
+    <b>ABSTRACT</b>
+    <p>The world is shrinking. Cheap flights, large scale commercial shipping and expanding road networks all mean that we are better connected to everywhere else than ever before. Accessibility - whether it is to markets, schools, hospitals or water - is a precondition for the satisfaction of almost any economic need. The new map of Travel Time to Major Cities -developed by the European Commission and the World Bank- captures this connectivity and the concentration of economic activity. It also highlights that there is little wilderness left. The map shows the travel time (in hours/days) to major cities (i.e. cities of 50,000 or more people in year 2000) using land (road/off road) or water (navigable river, lake and ocean) based travel.</p>
+    <br><b>DATA PROVIDER</b>
+    <p>European Commission - Joint Research Centre</p>
+    <br><b>TECHNICAL BACKGROUND</b>
+    <p>This map was made for the World Bank's World Development Report 2009 "Reshaping Economic Geography". Accessibility is defined as the travel time to a location of interest using land (road/off road) or water (navigable river, lake and ocean) based travel. Each pixel value on the map represents the travel time to the nearest city of 50,000 or more people in year 2000. For a description of the model and data sources used, visit https://forobs.jrc.ec.europa.eu/products/gam/description.php</p>
+    <br><b>RELATED SDGs </b>
+    <p>GOAL 7, GOAL 11, GOAL 13</p>
+    <br>
+    <a href="https://lucageo.github.io/cep/single_maps/distance.html" target="_blank" class="explore-btn waves-effect waves-light btn-small"><i class="material-icons right">explore</i>Explore</a>
+    <br>
+    <a href="https://geospatial.jrc.ec.europa.eu/geoserver/hotspots/wcs?service=WCS&version=2.0.1&request=GetCoverage&CoverageId=hotspots%3Adistance_africa_05092022&format=image/tiff" target="_blank" class="download-btn waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_down</i>Download</a>
+    <br>
+    </p>
+    </div>
+    </div>
+    <div id="modal-powerplant" class="modal">
+    <div class="modal-content">
+    <h4>Power plants</h4> <br>
+    <b>ABSTRACT</b>
+    <p>This dataset shows the African power plants. It includes thermal plants (coal, gas, oil, nux, biomass, waste, geothermal) and renewables (hydro, wind, solar). Each power plant is geolocated and entries contain information on plant capacity and generation type.</p>
+    <br><b>DATA PROVIDER</b>
+    <p>European Commission - Joint Research Centre</p>
+    <br><b>TECHNICAL BACKGROUND</b>
+    <p>This list of power plants is entirely based on open sources datasets: ECOWREX (ECOWREX.org), WRI Global Power Plant Database (https://www.wri.org/publication/global-power-plant-database), ENERGYDATA.INFO open data platform (https://energydata.info/en/dataset/africa-power-stations-2012.), Harvard. Africa power plants (http://worldmap.harvard.edu/data/geonode:africa_power_plants_gd4) and S&P Global Platts (https://www.platts.com/products/world-electric-power-plants-database). The datasets are available per region at: http://doi.org/10.5281/zenodo.2620189 (West Africa), https://zenodo.org/record/4030905#.X2xIsHtS-Mo (Southern Africa), https://zenodo.org/record/3839756#.X3WPN3tS-Mo (North, Eastern and Central Africa)</p>
+    <br><b>RELATED SDGs </b>
+    <p>GOAL 7, GOAL 9</p>
+    <br>
+    <a href="https://lucageo.github.io/cep/single_maps/powerplants.html" target="_blank" class="explore-btn waves-effect waves-light btn-small"><i class="material-icons right">explore</i>Explore</a>
+    <br>
+    <a href="https://geospatial.jrc.ec.europa.eu/geoserver/africa_platform/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=africa_platform%3APower_plants_2019&outputformat=SHAPE-ZIP" target="_blank" class="download-btn waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_down</i>Download</a>
+    </p>
+    </div>
+    </div>
+    <div id="modal-sanitationaccess" class="modal">
+      <div class="modal-content">
+      <h4>Connectivity</h4> <br>
+      <b>ABSTRACT</b>
+      <p>This dataset provides mobile (cellular) network performance metrics in zoom level 16 web Mercator tiles (approximately 610.8 meters by 610.8 meters at the equator). Download speed is collected via the Speedtest by Ookla applications for Android and iOS and averaged for each tile. Measurements are filtered to results containing GPS-quality location accuracy. Speedtest data is used today by commercial mobile network operators around the world to inform network buildout, improve global Internet quality, and increase Internet accessibility. This data can be used for rural and urban connectivity development, to help make the internet better, faster, and more accessible for everyone.</p>
+      <br><b>DATA PROVIDER</b>
+      <p>OOKLA</p>
+      <br><b>TECHNICAL BACKGROUND</b>
+      <p>Hundreds of millions of Speedtests are taken on the Ookla platform each month. In order to create a manageable dataset, we aggregate raw data into tiles. The size of a data tile is defined as a function of "zoom level" (or "z"). At z=0, the size of a tile is the size of the whole world. At z=1, the tile is split in half vertically and horizontally, creating 4 tiles that cover the globe. This tile-splitting continues as zoom level increases, causing tiles to become exponentially smaller as we zoom into a given region. By this definition, tile sizes are actually some fraction of the width/height of Earth according to Web Mercator projection (EPSG:3857). As such, tile size varies slightly depending on latitude, but tile sizes can be estimated in meters. For the purposes of these layers, a zoom level of 16 (z=16) is used for the tiling. This equates to a tile that is approximately 610.8 meters by 610.8 meters at the equator (18 arcsecond blocks). The geometry of each tile is represented in WGS 84 (EPSG:4326) in the tile field.</p>
+      <br><b>RELATED SDGs </b>
+      <p>GOAL 10, GOAL 11</p>
+      <br>
+      <br>
+      <a href="https://geospatial.jrc.ec.europa.eu/geoserver/africa_platform/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=africa_platform:gps_mobile_tiles_down&outputformat=SHAPE-ZIP" target="_blank" class="download-btn waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_down</i>Download</a>
+      </p>
+      </div>
+      </div>
+    <div id="modal-solar" class="modal">
+    <div class="modal-content">
+    <h4>Longterm yearly average of global horizontal irradiation</h4> <br>
+    <b>ABSTRACT</b>
+    <p>This dataset shows the Longterm yearly average of global horizontal irradiation (GHI) in kWh/m2, covering the period 1999-2018</p>
+    <br><b>DATA PROVIDER</b>
+    <p>Solargis, The World Bank - Global Solar Atlas</p>
+    <br><b>TECHNICAL BACKGROUND</b>
+    <p>This data layer represents an output from the Solargis global solar model. It has
+    been delivered for the Global Solar Atlas (https://globalsolaratlas.info/), online
+    platform funded by the Energy Sector Management Assistance Program
+    (ESMAP), a multi-donor trust fund administered by The World Bank, under a
+    global initiative on Renewable Energy Resource Mapping.</p>
+    <br><b>RELATED SDGs </b>
+    <p>GOAL 7, GOAL 9</p>
+    <br>
+    <a href="https://lucageo.github.io/cep/single_maps/solar.html" target="_blank" class="explore-btn waves-effect waves-light btn-small"><i class="material-icons right">explore</i>Explore</a>
+    <br>
+    <a href="https://geospatial.jrc.ec.europa.eu/geoserver/africa_platform/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=africa_platform%3APower_plants_2019&outputformat=SHAPE-ZIP" target="_blank" class="download-btn waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_down</i>Download</a>
+    </p>
+    </div>
+    </div>
+    <div id="modal-wind" class="modal">
+    <div class="modal-content">
+    <h4>Wind Mean Power Density</h4> <br>
+    <b>ABSTRACT</b>
+    <p>The mean wind power density is a measure of the wind resource. Higher mean wind power densities indicate better wind resources.</p>
+    <br><b>DATA PROVIDER</b>
+    <p>Global Wind Atlas</p>
+    <br><b>TECHNICAL BACKGROUND</b>
+    <p> To run the modeling over the very large area, a system of software and servers called the Global Wind Atlas Frogfoot was developed. This method is very similar to what is used in the WAsP software. For example, the flow modeling for orography, roughness and roughness change is the same in the WAsP software. However, the GWA calculation differs in a number of ways in order to allow a very large area to be covered. For example, local wind climate calculations are based on more than a single generalized wind climate, and terrain data is input as raster maps rather than vector maps.</p>
+    <br><b>RELATED SDGs </b>
+    <p>GOAL 7, GOAL 9</p>
+    <br>
+    <a href="https://lucageo.github.io/cep/single_maps/wind.html" target="_blank" class="explore-btn waves-effect waves-light btn-small"><i class="material-icons right">explore</i>Explore</a>
+    <br>
+    <a href="https://geospatial.jrc.ec.europa.eu/geoserver/africa_platform/wcs?service=WCS&version=2.0.1&request=GetCoverage&CoverageId=africa_platform%3Awind_benin&format=image/tiff" target="_blank" class="download-btn waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_down</i>Download</a>
+    </p>
+    </div>
+    </div>
+    <div id="modal-drought" class="modal">
+    <div class="modal-content">
+    <h4>Risk of Drought</h4> <br>
+    <b>ABSTRACT</b>
+    <p>Droughts affect millions of people in the world each year and have long-lasting socioeconomic impacts. They can occur over most parts of the world, even in wet and humid regions, and can profoundly impact agriculture, basic household welfare, tourism, ecosystems and the services they provide. The Risk of Drought Impact for Agriculture (RDrI-Agri) is a categorized risk index, indicating the probability of having impacts from a drought, with particular focus on vegetation. Higher risk (in red) means that the areas affected will be the most likely to report impacts due to droughts. It is updated every ten days.</p>
+    <br><b>DATA PROVIDER</b>
+    <p>EC-JRC</p>
+    <br><b>TECHNICAL BACKGROUND</b>
+    <p>The layer shows the latest map available for the Risk of Drought Impacts for Agriculture (RDrI-Agri) as implemented in the Global Drought Observatory (GDO) of the Copernicus Emergency Management Service. It is used for determining areas likely to be affected by droughts, with emphasis on impacts on the agriculture sector. The RDrI-Agri indicator combines drought hazard (i.e. the possible future occurrence of drought events of a certain severity), drought exposure (i.e. the total population, its livelihoods and assets in an area in which drought events may occur), and vulnerability (i.e. the propensity of exposed elements to suffer adverse effects when impacted by a drought event). Drought hazard is expressed as the combination of rainfall anomaly (Standardized Precipitation Index – SPI), photosynthetic activity of the vegetation cover anomaly (fraction of Absorbed Photosynthetically Active Radiation (fAPAR) Anomaly) and soil moisture anomaly (SMA). The indicator is computed for the first, second and third decade of each month, and updated respectively on the 11th, 21st and 1st of the following month. The layer displayed in the Africa Knowledge Platform is the latest map available, for the last full decade. More information on the product factsheet: https://edo.jrc.ec.europa.eu/documents/factsheets/factsheet_rdri_agri.pdf</p>
+    <br><b>RELATED SDGs </b>
+    <p>GOAL 15, GOAL 3, GOAL 2, GOAL 13</p>
+    <br>
+    <a href="https://lucageo.github.io/cep/single_maps/drought.html" target="_blank" class="explore-btn waves-effect waves-light btn-small"><i class="material-icons right">explore</i>Explore</a>
+    <br>
+    <a href="https://geospatial.jrc.ec.europa.eu/geoserver/dopa_explorer_3/wcs?service=WCS&version=2.0.1&request=GetCoverage&CoverageId=africa_platform%3Adrought&format=image/tiff" target="_blank" class="download-btn waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_down</i>Download</a>
+
+    </p>
+    </div>
+    </div>
+    <div id="modal-intactf" class="modal">
+    <div class="modal-content">
+    <h4>Undisturbed tropical moist forest</h4> <br>
+    <b>ABSTRACT</b>
+    <p>The Undisturbed tropical moist forest map shows the coverage of undisturbed tropical moist forests remaining at the end of the year 2021.</p>
+    <br><b>DATA PROVIDER</b>
+    <p>NASA-SRTM</p>
+    <br><b>TECHNICAL BACKGROUND</b>
+    <p> For a full description of the dataset refer to the publication: C. Vancutsem, F. Achard, J.-F. Pekel, G. Vieilledent, S. Carboni, D. Simonetti, J. Gallego, L.E.O.C. Aragão, R. Nasi. Long-term (1990-2019) monitoring of forest cover changes in the humid tropics. Science Advances 2021.(https://doi.org/10.1126/sciadv.abe1603)</p>
+    <br><b>RELATED SDGs </b>
+    <p>GOAL 15</p>
+    <br>
+    <a href="https://lucageo.github.io/cep/single_maps/intactf.html" target="_blank" class="explore-btn waves-effect waves-light btn-small"><i class="material-icons right">explore</i>Explore</a>
+    <br>
+    <a href="https://geospatial.jrc.ec.europa.eu/geoserver/dopa_explorer_3/wcs?service=WCS&version=2.0.1&request=GetCoverage&CoverageId=africa_platform%3Aundis_forest_&format=image/tiff" target="_blank" class="download-btn waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_down</i>Download</a>
+    </p>
+    </div>
+    </div>
+    <div id="modal-pca" class="modal">
+    <div class="modal-content">
+    <h4>Protected and Conserved Areas</h4> <br>
+    <b>ABSTRACT</b>
+    <p>Protected areas have long played a crucial role in protecting natural landscapes and wildlife, and many consider them to be one of the most effective tools in protecting biodiversity. The International Union for Conservation of Nature (IUCN) officially defines a protected area as ' a xly defined geographical space, recognised, dedicated and managed, through legal or other effective means, to achieve the long term conservation of nature with associated ecosystem services and cultural values'. Protected areas also play a key role in preserving the benefits that nature brings to people, often referred to as 'ecosystem services'. They come in many shapes and sizes, ranging from strict nature reserves where only scientific research is permitted, to areas that allow natural resources to be used. The World Database on Protected Areas (WDPA) is the most comprehensive global database of marine and terrestrial protected areas.</p>
+    <br><b>DATA PROVIDER</b>
+    <p>UNEP-WCMC</p>
+    <br><b>TECHNICAL BACKGROUND</b>
+    <p>The World Database on Protected Areas (WDPA) is the most comprehensive global spatial data set on marine and terrestrial protected areas available. Protected area data are provided via Protected Planet, the online interface for the WDPA. The WDPA is a joint initiative of the International Union for Conservation of Nature (IUCN) and the UN Environment Programme's World Conservation Monitoring Centre (UNEP-WCMC) to compile spatially referenced information about protected areas. The data are provided as shapefiles and updated monthly.</p>
+    <br><b>RELATED SDGs </b>
+    <p>GOAL 15, GOAL 14</p>
+    <br>
+    <a href="https://lucageo.github.io/cep/single_maps/pca.html" target="_blank" class="explore-btn waves-effect waves-light btn-small"><i class="material-icons right">explore</i>Explore</a>
+    <br>
+    <a href="https://geospatial.jrc.ec.europa.eu/geoserver/wad/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=marxan:wdpa_latest_biopama&outputformat=SHAPE-ZIP" target="_blank" class="download-btn waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_down</i>Download</a>
+
+    </p>
+    </div>
+    </div>
+    <div id="modal-tempano" class="modal">
+    <div class="modal-content">
+    <h4>Annual Temperature Anomaly </h4> <br>
+    <b>ABSTRACT</b>
+    <p>This product is a global-scale climate diagnostic tool and provides a big picture overview of average global temperatures compared to a reference value.</p>
+    <br><b>DATA PROVIDER</b>
+    <p>NOAA</p>
+    <br><b>TECHNICAL BACKGROUND</b>
+    <p>Anomalies are with respect to the 20th century average (1901-2000). Monthly and annual global anomalies are available through the most recent complete month and year, respectively.</p>
+    <br><b>RELATED SDGs </b>
+    <p>GOAL 15, GOAL 14</p>
+    <br>
+    <a href="https://lucageo.github.io/cep/single_maps/tempano.html" target="_blank" class="explore-btn waves-effect waves-light btn-small"><i class="material-icons right">explore</i>Explore</a>
+    <br>
+    <a href="https://geospatial.jrc.ec.europa.eu/geoserver/dopa_explorer_3/wcs?service=WCS&version=2.0.1&request=GetCoverage&CoverageId=africa_platform:temp_Ano&format=image/tiff" target="_blank" class="download-btn waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_down</i>Download</a>
+
+    </p>
+    </div>
+    </div>
+    <div id="modal-elevation" class="modal">
+    <div class="modal-content">
+    <h4>Elevation</h4> <br>
+    <b>ABSTRACT</b>
+    <p>Digital Elevation Models (DEMs) provide information on bare ground topography, that is, elevation irrespective of land cover such as buildings/trees. DEMs are often derived from Light Detection and Ranging (LiDAR) data sources. DEMs are used in several applications such as understanding how climatic variables change with topography..</p>
+    <br><b>DATA PROVIDER</b>
+    <p>NASA-SRTM</p>
+    <br><b>TECHNICAL BACKGROUND</b>
+    <p> The Shuttle Radar Topography Mission (SRTM) was flown aboard the space shuttle Endeavour February 11-22, 2000. The National Aeronautics and Space Administration (NASA) and the National Geospatial-Intelligence Agency (NGA) participated in an international project to acquire radar data which were used to create the first near-global set of land elevations. </p>
+    <br><b>RELATED SDGs </b>
+    <p>GOAL 15</p>
+    <br>
+    <a href="https://lucageo.github.io/cep/single_maps/elevation.html" target="_blank" class="explore-btn waves-effect waves-light btn-small"><i class="material-icons right">explore</i>Explore</a>
+    <br>
+    <a href="https://geospatial.jrc.ec.europa.eu/geoserver/africa_platform/wcs?service=WCS&version=2.0.1&request=GetCoverage&CoverageId=africa_platform:elevation_energy&format=image/tiff" target="_blank" class="download-btn waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_down</i>Download</a>
+
+    </p>
+    </div>
+    </div>
+    <div id="modal-slope" class="modal">
+    <div class="modal-content">
+    <h4>Slope</h4> <br>
+    <b>ABSTRACT</b>
+    <p>Digital Elevation Models (DEMs) provide information on bare ground topography, that is, elevation irrespective of land cover such as buildings/trees. DEMs are often derived from Light Detection and Ranging (LiDAR) data sources. DEMs are used in several applications such as understanding how climatic variables change with topography..</p>
+    <br><b>DATA PROVIDER</b>
+    <p>NASA-SRTM</p>
+    <br><b>TECHNICAL BACKGROUND</b>
+    <p> The Shuttle Radar Topography Mission (SRTM) was flown aboard the space shuttle Endeavour February 11-22, 2000. The National Aeronautics and Space Administration (NASA) and the National Geospatial-Intelligence Agency (NGA) participated in an international project to acquire radar data which were used to create the first near-global set of land elevations. </p>
+    <br><b>RELATED SDGs </b>
+    <p>GOAL 15</p>
+    <br>
+    <a href="https://lucageo.github.io/cep/single_maps/slope.html" target="_blank" class="explore-btn waves-effect waves-light btn-small"><i class="material-icons right">explore</i>Explore</a>
+    <br>
+    <a href="https://geospatial.jrc.ec.europa.eu/geoserver/africa_platform/wcs?service=WCS&version=2.0.1&request=GetCoverage&CoverageId=africa_platform:slope_energy&format=image/tiff" target="_blank" class="download-btn waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_down</i>Download</a>
+    <br>
+    <br>
+    </p>
+    </div>
+    </div>
+    <div id="modal-natarea" class="modal">
+    <div class="modal-content">
+    <h4>Natural Areas</h4> <br>
+    <b>ABSTRACT</b>
+    <p>Whether you’re monitoring crops, modelling green energy installations or soil sealing, combatting loss of natural resources or just helping countries meet their Sustainable Development Goals, chances are high that you’ll need an accurate and spatially detailed map on land cover and land use. Earth Observation satellites, like those from EU’s flagship programme Copernicus, are key to providing such maps, at a global scale, with free and open access. Derived from the Copernicus Global Land Cover, this map represents the distribution of areas where land cover is not heavily disturbed by man’s activities. In other words, it shows areas where natural ecosystems and their associated species are expected to be found.</p>
+    <br><b>DATA PROVIDER</b>
+    <p>NASA-SRTM</p>
+    <br><b>TECHNICAL BACKGROUND</b>
+    <p> This layer of Natural Areas is calculated using Copernicus Global 100m Land Cover map 2019, by aggregation of all land cover classes except ‘Urban/Built up’ and ‘Cultivated and managed vegetation/agriculture (cropland)’. </p>
+    <br><b>RELATED SDGs </b>
+    <p>GOAL 15, Goal 3</p>
+    <br>
+    <a href="https://lucageo.github.io/cep/single_maps/natarea.html" target="_blank" class="explore-btn waves-effect waves-light btn-small"><i class="material-icons right">explore</i>Explore</a>
+    <br>
+    <a href="https://geospatial.jrc.ec.europa.eu/geoserver/dopa_explorer_3/wcs?service=WCS&version=2.0.1&request=GetCoverage&CoverageId=africa_platform%3Anat_areas4326&format=image/tiff" target="_blank" class="download-btn waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_down</i>Download</a>
+    <br>
+    <br>
+    </p>
+    </div>
+    </div>
+    <div id="modal-popdens" class="modal">
+    <div class="modal-content">
+    <h4>Residential Population</h4> <br>
+    <b>ABSTRACT</b>
+    <p>In an age of Development Agendas that call for universal inclusiveness of people, global population grids are essential to support analyses and inform policy-making in a wide range of fields, from environmental assessment to disaster risk analysis and reduction. This map combines the best-available population estimates (from CIESIN Gridded Population of the World) with the best-available assessment of the spatial extents of human settlements (inferred from Landsat satellite data). It depicts the distribution and density of population, expressed as the number of people per cell, at high spatial resolution (250m) for the year 2015.</p>
+    <br><b>DATA PROVIDER</b>
+    <p>EC-JRC</p>
+    <br><b>TECHNICAL BACKGROUND</b>
+    <p> Residential population estimates provided by the CIESIN Gridded Population of the World, version 4.10 (GPWv4.10) were disaggregated from census or administrative units to grid cells, informed by the distribution and density of built-up as mapped in the Global Human Settlement Layer (GHSL) global layer. The novel population grids constitute currently the de facto state-of-the-art in terms of open global geospatial population data, potentially enabling advances in many of the fields where this information is relevant.</p>
+    <br><b>RELATED SDGs </b>
+    <p>Goal 11, Goal 10, Goal 8</p>
+    <br>
+    <a href="https://lucageo.github.io/cep/single_maps/popdens.html" target="_blank" class="explore-btn waves-effect waves-light btn-small"><i class="material-icons right">explore</i>Explore</a>
+    <br>
+    <a href="https://geospatial.jrc.ec.europa.eu/geoserver/dopa_explorer_3/wcs?service=WCS&version=2.0.1&request=GetCoverage&CoverageId=dopa_explorer_3:ghsl_population_15&format=image/tiff" target="_blank" class="download-btn waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_down</i>Download</a>
+    <br>
+    <br>
+    </p>
+    </div>
+    </div>
+    <div id="modal-groundw" class="modal">
+    <div class="modal-content">
+    <h4>Groundwater Irrigated Areas</h4> <br>
+    <b>ABSTRACT</b>
+    <p>This map, compiled to support the analysis of SOLAW report concerning trends and current use of water use in agriculture, shows the percentage of irrigated area supplied by groundwater. Irrigation mainly relies on renewable freshwater resources, either surface water or groundwater.</p>
+    <br><b>DATA PROVIDER</b>
+    <p>FAO</p>
+    <br><b>TECHNICAL BACKGROUND</b>
+    <p>While the extent of irrigation and related water uses are reported in statistical databases or by model simulations, information on the source of irrigation water is still very rare. A recent global inventory undertaken by FAO and the University of Bonn reports that 113 million ha, or 38 percent of the total area equipped for irrigation of 301 million ha, is irrigated by groundwater </p>
+    <br><b>RELATED SDGs </b>
+    <p>GOAL 15, GOAL 2</p>
+    <br>
+    <a href="https://lucageo.github.io/cep/single_maps/groundw.html" target="_blank" class="explore-btn waves-effect waves-light btn-small"><i class="material-icons right">explore</i>Explore</a>
+    <br>
+    <a href="https://geospatial.jrc.ec.europa.eu/geoserver/africa_platform/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=africa_platform:groundwater&outputformat=SHAPE-ZIP" target="_blank" class="download-btn waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_down</i>Download</a>
+    <br>
+    <br>
+    </p>
+    </div>
+    </div>
+    <div id="modal-lives" class="modal">
+    <div class="modal-content">
+    <h4>Livestock</h4> <br>
+    <b>ABSTRACT</b>
+    <p>Global data sets on the geographic distribution of livestock are essential for diverse applications in agricultural socio-economics, food security, environmental impact assessment and epidemiology. This dataset contains the global distribution of Livestock in 2010 expressed in total number of goats per pixel (5 min of arc) according to the Gridded Livestock of the World database (GLW 3)</p>
+    <br><b>DATA PROVIDER</b>
+    <p>FAO</p>
+    <br><b>TECHNICAL BACKGROUND</b>
+    <p>The Gridded Livestock of the World, developed by FAO, is publicly available for download at https://dataverse.harvard.edu/dataverse/glw, and is described in detail in: Gilbert M, G Nicolas, G Cinardi, S Vanwambeke, TP Van Boeckel, GRW Wint, TP Robinson (2018) Global Distribution Data for Cattle, Buffaloes, Horses, Sheep, Goats, Pigs, Chickens and Ducks in 2010. Nature Scientific data, 5:180227. doi: 10.1038/sdata.2018.227 </p>
+    <br><b>RELATED SDGs </b>
+    <p>GOAL 15, GOAL 2</p>
+    <br>
+    <a href="https://lucageo.github.io/cep/single_maps/lives.html" target="_blank" class="explore-btn waves-effect waves-light btn-small"><i class="material-icons right">explore</i>Explore</a>
+    <br>
+    <a href="https://geospatial.jrc.ec.europa.eu/geoserver/wad/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=wad:lvst_int&outputformat=SHAPE-ZIP" target="_blank" class="download-btn waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_down</i>Download</a>
+    <br>
+    <br>
+    </p>
+    </div>
+    </div>
+    <div id="modal-irrigation" class="modal">
+    <div class="modal-content">
+    <h4>Irrigated Areas</h4> <br>
+    <b>ABSTRACT</b>
+    <p>In global studies related to water use, food production or climate change, knowing the location of irrigate agriculture is important in order to assess better the impact of water use on the available water resources. The Global map of irrigation areas shows the amount of area equipped for irrigation around the turn of the twenty-first century as a percentage of the total area on a raster with a resolution of 5 minutes.</p>
+    <br><b>DATA PROVIDER</b>
+    <p>FAO</p>
+    <br><b>TECHNICAL BACKGROUND</b>
+    <p> The data layer on area equipped for irrigation was developed by combining sub-national irrigation statistics with geospatial information on the position and extent of irrigation schemes to compute the fraction of 5 arc minute cells that was equipped for irrigation, which is called irrigation density. </p>
+    <br><b>RELATED SDGs </b>
+    <p>GOAL 15, GOAL 2 </p>
+    <br>
+    <a href="https://lucageo.github.io/cep/single_maps/irrigation.html" target="_blank" class="explore-btn waves-effect waves-light btn-small"><i class="material-icons right">explore</i>Explore</a>
+    <br>
+    <a href="https://geospatial.jrc.ec.europa.eu/geoserver/africa_platform/wcs?service=WCS&version=2.0.1&request=GetCoverage&CoverageId=africa_platform%3Airrigated_areas&format=image/tiff" target="_blank" class="download-btn waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_down</i>Download</a>
+    <br>
+    <br>
+    </p>
+    </div>
+    </div>
+    <div id="modal-health" class="modal">
+    <div class="modal-content">
+    <h4>Health Centers</h4> <br>
+    <b>ABSTRACT</b>
+    <p>This master list of health facilities was developed from a variety of government and non-government sources from 50 countries in sub-Saharan Africa. It uses multiple geocoding methods to provide a comprehensive spatial inventory of 98 745 public health facilities.</p>
+    <br><b>DATA PROVIDER</b>
+    <p>EC-JRC</p>
+    <br><b>TECHNICAL BACKGROUND</b>
+    <p> Each data record represents a health facility and has 8 descriptive variables – Location identifiers including: country, first level administrative division, latitude, longitude and LL source (source of the coordinates). Coordinates are rounded off to four decimal places for uniformity, allowing an accuracy of 5–10 metres in decimal degrees coordinate format.</p>
+    <br><b>RELATED SDGs </b>
+    <p>GOAL 3</p>
+    <br>
+    <a href="https://lucageo.github.io/cep/single_maps/health.html" target="_blank" class="explore-btn waves-effect waves-light btn-small"><i class="material-icons right">explore</i>Explore</a>
+    <br>
+    <a href="https://geospatial.jrc.ec.europa.eu/geoserver/africa_platform/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=africa_platform:health_centers&outputformat=SHAPE-ZIP" target="_blank" class="download-btn waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_down</i>Download</a>
+    <br>
+    <br>
+    </p>
+    </div>
+    </div>
+    <div id="modal-grid" class="modal">
+    <div class="modal-content">
+    <h4>Grid</h4> <br>
+    <b>ABSTRACT</b>
+    <p>In Sub-Saharan Africa, medium- and low-voltage data are often non-existent, uncompleted, or unavailable. This is a challenge for practitioners working on the electricity access agenda, power sector resilience or climate change adaptation. This layer presents the spatial distance to the existing and planned electricity grid (high, medium, low voltage level).</p>
+    <br><b>DATA PROVIDER</b>
+    <p>EC-JRC</p>
+    <br><b>TECHNICAL BACKGROUND</b>
+    <p> This layer presents the spatial distance to the existing and planned electricity grid (high, medium, low voltage level) compiled using multiple sources that enumerate elements of the existing transmission and distribution network.
+    These sources include Open Street Map, the Word Bank datasets, Arderne et al. (2020), the Economic Community of West African States Observatory for Renewable Energy and Energy Efficiency (http://www.ecowrex.org/), and rural electrification agencies and EU delegations in Africa (Burkina Faso, Kenya, Tanzania).</p>
+    <br><b>RELATED SDGs </b>
+    <p>GOAL 7</p>
+    <br>
+    <a href="https://lucageo.github.io/cep/single_maps/grid.html" target="_blank" class="explore-btn waves-effect waves-light btn-small"><i class="material-icons right">explore</i>Explore</a>
+    <br>
+    <a href="https://geospatial.jrc.ec.europa.eu/geoserver/africa_platform/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=africa_platform:electric_grid&outputformat=SHAPE-ZIP" target="_blank" class="download-btn waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_down</i>Download</a>
+    <br>
+    <br>
+    </p>
+    </div>
+    </div>
+    <div id="modal-industrial" class="modal">
+    <div class="modal-content">
+    <h4>Industrial Areas</h4> <br>
+    <b>ABSTRACT</b>
+    <p>The data reports about the built-up surface allocated to dominant non-residential (NRES) uses expressed as number of square meters.</p>
+    <br><b>DATA PROVIDER</b>
+    <p>EC-JRC</p>
+    <br><b>TECHNICAL BACKGROUND</b>
+    <p> Data are spatial-temporal interpolated from 1975 to 2030 in 5 years intervals.
+    For the temporal anchor point of 2018 the data is published at 10m as observed from the S2 image data.</p>
+    <br><b>RELATED SDGs </b>
+    <p>GOAL 11</p>
+    <br>
+    <a href="https://lucageo.github.io/cep/single_maps/industrial_areas.html" target="_blank" class="explore-btn waves-effect waves-light btn-small"><i class="material-icons right">explore</i>Explore</a>
+    <br>
+    <a href="https://geospatial.jrc.ec.europa.eu/geoserver/africa_platform/wcs?service=WCS&version=2.0.1&request=GetCoverage&CoverageId=africa_platform:industrial_areas&format=image/tiff" target="_blank" class="download-btn waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_down</i>Download</a>
+    <br>
+    <br>
+    </p>
+    </div>
+    </div>
+    <div id="modal-conflict" class="modal">
+      <div class="modal-content">
+      <h4> Armed conflicts (2019-2022)</h4> <br>
+      <b>ABSTRACT</b>
+      <p>Most conflicts initially start out as very local phenomena. Monitoring political violence events at local-level can help anticipate the escalation of conflicts within states, recognise signs of crisis development and determine likely conflict trajectories. The Armed Conflict Location & Event Data Project (ACLED) collects reported information on internal political conflict disaggregated by date, location and actors to facilitate local and scale-dependant research on war patterns and processes. This layer shows all political violence and protest events recorded by ACLED in Africa for the period 2019-2022.</p>
+      <br><b>DATA PROVIDER</b>
+      <p>Armed Conflict Location & Event Data Project (ACLED)</p>
+      <br><b>TECHNICAL BACKGROUND</b>
+      <p> The Armed Conflict Location & Event Data (ACLED) project is a disaggregated data collection, analysis, and crisis mapping project. ACLED data are derived from a wide range of local, regional and national sources and the information is collected by trained data experts worldwide. ACLED records the dates, actors, types of violence, locations, and fatalities of all reported political violence and protest events across Africa, South Asia, Southeast Asia, the Middle East, Central Asia and the Caucasus, and Southeastern and Eastern Europe and the Balkans. Political violence and protest activity includes events that occur within civil wars and periods of instability, public demonstrations, and regime breakdown. Version 8 of ACLED covers African states from 1997 into real-time.</p>
+      <br><b>RELATED SDGs </b>
+      <p>GOAL 16</p>
+      <br>
+      <a href="https://lucageo.github.io/cep/single_maps/conflicts.html" target="_blank" class="explore-btn waves-effect waves-light btn-small"><i class="material-icons right">explore</i>Explore</a>
+      <br>
+      <a href="https://geospatial.jrc.ec.europa.eu/geoserver/africa_platform/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=africa_platform%3Aevents_acleddata&outputformat=SHAPE-ZIP" target="_blank" class="download-btn waves-effect waves-light btn-small"><i class="material-icons right">keyboard_arrow_down</i>Download</a>
+      <br>
+      <br>
+      </p>
+      </div>
+      </div>
+<div id='map' class='map'> </div>
+<div id='main_tools' class='main_tools'>
+  <div class="row">
+    <div class="col s12 m6 l3 icon_custom search_icon"><a class=" tooltipped" data-position="bottom" data-tooltip="Search for places"><span class="material-icons">search</span></div>
+    <div class="col s12 m6 l3 icon_custom layers_icon"><a class=" tooltipped" data-position="bottom" data-tooltip="Export map" id="downloadLink" href="" download="map.png"> <span class="material-icons">get_app</span></a></div>
+      
+    <div class="col s12 m6 l3 icon_custom legend_icon"><a class=" tooltipped" data-position="bottom" data-tooltip="Legend"><span class="material-icons">format_list_bulleted</span></div>
+    <div class="col s12 m6 l3 icon_custom zoom_icon"><a class=" tooltipped" data-position="bottom" data-tooltip="Set global view"><span class="material-icons">zoom_out_map</span></a></div>
+  </div>
+</div>
+        
+
+  <div id='geocoder' class='geocoder'></div>
+  <div id='country_var_dropdown' >
+ 
+    <fieldset>
+      <select id='layer_country' name='layer_country'>
+      <option value='iso3'>Select a country variable</option>
+      <option value='adm0_code'>Total Carbon</option>
+      <option value='shape_leng'>Natural Areas</option>
+      <option value='adm0_code'>Water Presence</option>
+      <option value='shape_leng'>Intact Forest</option>
+      <option value='adm0_code'>Mammals Richness</option>
+      <option value='shape_leng'>Amphibians Richness</option>
+      <option value='shape_leng'>Birds Richness</option>
+      <option value='shape_leng'>Endemic Threatened Mammals Richness</option>
+      <option value='shape_leng'>Endemic Threatened Anphibians Richness</option>
+      <option value='iso3'>Overall Score</option>
+      </select>
+      </fieldset>
+  </div>
+
+  <div id='custom_map_tools'></div>
+
+  <div class="row scenarios">
+      <ul  class="collapsible">
+          <li>
+            <div id='pol_1_head'class="collapsible-header"><i class="material-icons">blur_on</i>Renewable Energy Adoption and Integration</div>
+            <div class="collapsible-body collbod"><span>Prioritize the development and integration of renewable energy sources such as solar, wind, hydro, and geothermal into the energy mix.
+                Implement policies to support the scaling up of renewable energy projects, including feed-in tariffs, renewable portfolio standards, and tax incentives.
+                Encourage grid modernization to accommodate variable renewable energy sources and improve grid resilience.</span><div class = 'scen' id='pol_1'>Run Scenario</div></div>
+            
+          </li>
+          <li>
+            <div id='pol_2_head'class="collapsible-header"><i class="material-icons">blur_on</i>Energy Efficiency and Conservation</div>
+            <div class="collapsible-body collbod"><span>Enact stringent energy efficiency standards for buildings, appliances, and industrial processes to reduce overall energy consumption.
+                Promote energy conservation through public awareness campaigns and by providing incentives for energy-saving measures.
+                Support research and development in new technologies and materials that improve energy efficiency across different sectors.</span><div class = 'scen' id='pol_2'>Run Scenario</div></div>
+            
+          </li>
+          <li>
+            <div id='pol_3_head'class="collapsible-header"><i class="material-icons">blur_on</i>Carbon Emission Reduction and Climate Resilience</div>
+            <div class="collapsible-body collbod"><span>Set ambitious, legally binding targets for the reduction of greenhouse gas emissions in line with international climate agreements.
+                Implement carbon pricing mechanisms such as carbon taxes or cap-and-trade systems to incentivize low-carbon technologies.
+                Develop and enforce regulations to phase out fossil fuel use and promote climate resilience and adaptation measures.</span><div class = 'scen' id='pol_3'>Run Scenario</div></div>
+            
+          </li>
+          <li>
+              <div id='pol_4_head'class="collapsible-header"><i class="material-icons">blur_on</i>Sustainable Transportation and Electrification</div>
+              <div class="collapsible-body collbod"><span>Accelerate the transition to electric and low-emission vehicles through subsidies, tax breaks, and the establishment of charging infrastructure.
+                  Invest in public transportation and non-motorized transport options to reduce reliance on personal vehicles.
+                  Promote the use of sustainable biofuels and hydrogen as alternative fuels for sectors where electrification is challenging.</span><div class = 'scen'  id='pol_4'>Run Scenario</div></div>
+              
+            </li>
+        </ul>
+
+    </div>
+
+
+  
+<!-- ------------------ main sidebar where country scores and tool are displayed ------------------------------ -->
+
+      
+  <div class='sidebar' data-html2canvas-ignore="true">
+      <div id='country_name'></div>
+      <div id = 'listing'>
+      <div id = 'listingname'>
+      </div>
+     </div>
+
+
+     <ul class="collapsible manual_scores">
+      <li class='active'>
+        <div class="collapsible-header scoring_section"><i class="material-icons">tune</i> Set your priorities</div>
+
+        <div class="collapsible-body topic_body_main"><span>
+            <div id='scenarios_header' class="col s6">Select a Scenario </div>
+
+          <div class='top_dropdown'>
+            <div class='top_dropdown_inner'>
+            <div class='map-overlay-inner'>
+      <div class='topic_section_supply'>
+        <ul class="collapsible main_topic_section">
+            <li class='active'>
+                <div class="collapsible-header topic_section"><i class="material-icons">blur_on</i> Market supply </div>
+                <div class="collapsible-body topic_body"><span>
+            
+                  <form action="#">
+                    <div class="input-field col s12">
+                      <a class='btn modal-trigger' href='#modal-distance'><span class='material-icons'>info</span></a><span id ="delvarico" class="delvarico-distance">-</span> <label>Closest to the grid</label><br>    
+                      <p class="range-field range-field-distance"><input type="range" id="distance_slider" value ="0" min="1" max="10" /> <output id="distance_value" name="distance_value">1<span></span></output></p>
+                    </div>
+                  </form>
+                  
+                  <form action="#">
+                    <div class="input-field col s12">
+                      <a class='btn modal-trigger' href='#modal-distance_inv'><span class='material-icons'>info</span></a><span id ="delvarico"class="delvarico-distance_inv">-</span> <label>Farthest from the grid</label><br>    
+                      <p class="range-field range-field-distance_inv"><input type="range" id="distance_inv_slider" value ="0" min="1" max="10" /> <output id="distance_inv_value" name="distance_inv_value">1<span></span></output></p>
+                    </div>
+                  </form>
+                  <form action="#">
+                  <div class="input-field col s12">
+                  <a class='btn modal-trigger' href='#modal-powerplant'><span class='material-icons'>info</span></a><span id ="delvarico" class="delvarico-powerplant">-</span> <label>Power plants</label><br>    
+                  <p class="range-field range-field-powerplant"><input type="range" id="powerplant_slider" value ="0" min="1" max="10" /> <output id="powerplant_value" name="powerplant_value">1<span></span></output></p>
+                  </div>
+                  </form>
+                  <form action="#">
+                  <div class="input-field col s12">
+                  <a class='btn modal-trigger' href='#modal-solar'><span class='material-icons'>info</span></a><span id ="delvarico" class="delvarico-solar">-</span> <label>Solar potential</label><br>    
+                  <p class="range-field range-field-solar"><input type="range" id="solar_slider" value ="0" min="1" max="10" /> <output id="solar_value" name="solar_value">1<span></span></output></p>
+                  </div>
+                  </form>
+                  <form action="#">
+                  <div class="input-field col s12">
+                  <a class='btn modal-trigger' href='#modal-wind'><span class='material-icons'>info</span></a><span id ="delvarico" class="delvarico-wind">-</span> <label>Wind potential</label><br>    
+                  <p class="range-field range-field-wind"><input type="range" id="wind_slider" value ="0" min="1" max="10" /> <output id="wind_value" name="wind_value">1<span></span></output></p>
+                  </div>
+                  </form>
+                  <form action="#">
+                  <div class="input-field col s12">
+                  <a class='btn modal-trigger' href='#modal-hydro'><span class='material-icons'>info</span></a><span id ="delvarico" class="delvarico-hydro">-</span> <label>Hydropower potential</label><br>    
+                  <p class="range-field range-field-hydro"><input type="range" id="hydro_slider" value ="0" min="1" max="10" /> <output id="hydro_value" name="hydro_value">1<span></span></output></p>
+                  </div>
+                  </form>
+                  <form action="#">
+                  <div class="input-field col s12">
+                  <a class='btn modal-trigger' href='#modal-access'><span class='material-icons'>info</span></a><span id ="delvarico" class="delvarico-access">-</span> <label>Most accessible Areas</label><br>    
+                  <p class="range-field range-field-access"><input type="range" id="access_slider" value ="0" min="1" max="10" /> <output id="access_value" name="access_value">1<span></span></output></p>
+                  </div>
+                  </form>
+                  <form action="#">
+                    <div class="input-field col s12">
+                    <a class='btn modal-trigger' href='#modal-access_inv'><span class='material-icons'>info</span></a><span id ="delvarico" class="delvarico-access_inv">-</span> <label>Least accessible Areas</label><br>    
+                    <p class="range-field range-field-access_inv"><input type="range" id="access_inv_slider" value ="0" min="1" max="10" /> <output id="access_inv_value" name="access_inv_value">1<span></span></output></p>
+                    </div>
+                    </form>
+                  <form action="#">
+                  <div class="input-field col s12">
+                  <a class='btn modal-trigger' href='#modal-grid'><span class='material-icons'>info</span></a><span id ="delvarico" class="delvarico-grid">-</span> <label>Electricity Grid</label><br>    
+                  <p class="range-field range-field-grid"><input type="range" id="grid_slider" value ="0" min="1" max="10" /> <output id="grid_value" name="grid_value">1<span></span></output></p>
+                  </div>
+                  </form>
+                </span></div>
+                  </li>
+                  </ul>
+          </div>
+          <div class='topic_section_demand'>
+              <ul class="collapsible main_topic_section">
+                  <li class='disabled'>
+                      <div class="collapsible-header topic_section"><i class="material-icons">blur_on</i> Market demand </div>
+                      <div class="collapsible-body topic_body"><span>
+             
+                  <form action="#">
+                  <div class="input-field col s12">
+                  <a class='btn modal-trigger' href='#modal-pvdiesel'><span class='material-icons'>info</span></a> <span id ="delvarico" class="delvarico-pvdiesel">-</span> <label>Cost of PV versus Diesel</label><br>    
+                  <p class="range-field range-field-pvdiesel"><input type="range" id="pvdiesel_slider" value ="0" min="1" max="10" /> <output id="pvdiesel_value" name="pvdiesel_value">1<span></span></output></p>
+                  </div>
+                  </form>
+                  <form action="#">
+                  <div class="input-field col s12">
+                  <a class='btn modal-trigger' href='#modal-popdens'><span class='material-icons'>info</span></a> <span id ="delvarico" class="delvarico-popdens">-</span> <label>Population</label><br>    
+                  <p class="range-field range-field-popdens"><input type="range" id="popdens_slider" value ="0" min="1" max="10" /> <output id="popdens_value" name="popdens_value">1<span></span></output></p>
+                  </div>
+                  </form>
+                  <form action="#">
+                  <div class="input-field col s12">
+                  <a class='btn modal-trigger' href='#modal-health'><span class='material-icons'>info</span></a><span id ="delvarico" class="delvarico-health">-</span>  <label>Health centers</label><br>    
+                  <p class="range-field range-field-health"><input type="range" id="health_slider" value ="0" min="1" max="10" /> <output id="health_value" name="health_value">1<span></span></output></p>
+                  </div>
+                  </form>
+                  <form action="#">
+                    <div class="input-field col s12">
+                    <a class='btn modal-trigger' href='#modal-education'><span class='material-icons'>info</span></a><span id ="delvarico" class="delvarico-education">-</span> <label>Educational facilities</label><br>    
+                    <p class="range-field range-field-education"><input type="range" id="education_slider" value ="0" min="1" max="10" /> <output id="education_value" name="education_value">1<span></span></output></p>
+                    </div>
+                  </form>
+                  <form action="#">
+                  <div class="input-field col s12">
+                  <a class='btn modal-trigger' href='#modal-edu_no_e'><span class='material-icons'>info</span></a><span id ="delvarico" class="delvarico-edu_no_e">-</span> <label>Educational facilities without electicity</label><br>    
+                  <p class="range-field range-field-edu_no_e"><input type="range" id="edu_no_e_slider" value ="0" min="1" max="10" /> <output id="edu_no_e_value" name="edu_no_e_value">1<span></span></output></p>
+                  </div>
+                  </form>
+                  <form action="#">
+                  <div class="input-field col s12">
+                  <a class='btn modal-trigger' href='#modal-irrigation'><span class='material-icons'>info</span></a><span id ="delvarico" class="delvarico-irrigation">-</span> <label>Area equipped for irrigation</label><br>    
+                  <p class="range-field range-field-irrigation"><input type="range" id="irrigation_slider" value ="0" min="1" max="10" /> <output id="irrigation_value" name="irrigation_value">1<span></span></output></p>
+                  </div>
+                  </form>
+                  <form action="#">
+                  <div class="input-field col s12">
+                  <a class='btn modal-trigger' href='#modal-groundw'><span class='material-icons'>info</span></a><span id ="delvarico" class="delvarico-groundw">-</span> <label>Groundwater Irrigation</label><br>    
+                  <p class="range-field range-field-groundw"><input type="range" id="groundw_slider" value ="0" min="1" max="10" /> <output id="groundw_value" name="groundw_value">1<span></span></output></p>
+                  </div>
+                  </form>
+                  <form action="#">
+                  <div class="input-field col s12">
+                  <a class='btn modal-trigger' href='#modal-lives'><span class='material-icons'>info</span></a><span id ="delvarico" class="delvarico-lives">-</span> <label>Livestock</label><br>    
+                  <p class="range-field range-field-lives"><input type="range" id="lives_slider" value ="0" min="1" max="10" /> <output id="lives_value" name="lives_value">1<span></span></output></p>
+                  </div>
+                  </form>
+                </span></div>
+                </li>
+              </ul>
+          </div>
+          <div class='topic_section_env'>
+              <ul class="collapsible main_topic_section">
+                  <li class='disabled'>
+                      <div class="collapsible-header topic_section"><i class="material-icons">blur_on</i>Environmental and Climate factors​</div>
+                      <div class="collapsible-body topic_body"><span>
+              
+                  <form action="#">
+                  <div class="input-field col s12">
+                  <a class='btn modal-trigger' href='#modal-elevation'><span class='material-icons'>info</span></a><span id ="delvarico" class="delvarico-elevation">-</span> <label>Elevation</label><br>    
+                  <p class="range-field range-field-elevation"><input type="range" id="elevation_slider" value ="0" min="1" max="10" /> <output id="elevation_value" name="elevation_value">1<span></span></output></p>
+                  </div>
+                  </form>
+                  <form action="#">
+                  <div class="input-field col s12">
+                  <a class='btn modal-trigger' href='#modal-slope'><span class='material-icons'>info</span></a><span id ="delvarico" class="delvarico-slope">-</span> <label>Slope</label><br>    
+                  <p class="range-field range-field-slope"><input type="range" id="slope_slider" value ="0" min="1" max="10" /> <output id="slope_value" name="slope_value">1<span></span></output></p>
+                  </div>
+                  </form>
+                  <form action="#">
+                  <div class="input-field col s12">
+                  <a class='btn modal-trigger' href='#modal-natarea'><span class='material-icons'>info</span></a><span id ="delvarico" class="delvarico-natarea">-</span> <label>Inside Natural Areas</label><br>    
+                  <p class="range-field range-field-natarea"><input type="range" id="natarea_slider" value ="0" min="1" max="10" /> <output id="natarea_value" name="natarea_value">1<span></span></output></p>
+                  </div>
+                  </form>
+                  <form action="#">
+                  <div class="input-field col s12">
+                  <a class='btn modal-trigger' href='#modal-natarea_inv'><span class='material-icons'>info</span></a><span id ="delvarico" class="delvarico-natarea_inv">-</span> <label>Outside Natural Areas</label><br>    
+                  <p class="range-field range-field-natarea_inv"><input type="range" id="natarea_inv_slider" value ="0" min="1" max="10" /> <output id="natarea_inv_value" name="natarea_inv_value">1<span></span></output></p>
+                  </div>
+                  </form>
+                  <form action="#">
+                  <div class="input-field col s12">
+                  <a class='btn modal-trigger' href='#modal-pca'><span class='material-icons'>info</span></a><span id ="delvarico" class="delvarico-pca">-</span> <label>Protected and Conserved Areas</label><br>    
+                  <p class="range-field range-field-pca"><input type="range" id="pca_slider" value ="0" min="1" max="10" /> <output id="pca_value" name="pca_value">1<span></span></output></p>
+                  </div>
+                  </form>
+                  <form action="#">
+                  <div class="input-field col s12">
+                  <a class='btn modal-trigger' href='#modal-tempano'><span class='material-icons'>info</span></a><span id ="delvarico" class="delvarico-tempano">-</span> <label>Temperature Anomalies</label><br>    
+                  <p class="range-field range-field-tempano"><input type="range" id="tempano_slider" value ="0" min="1" max="10" /> <output id="tempano_value" name="tempano_value">1<span></span></output></p>
+                  </div>
+                  </form>
+                  <form action="#">
+                  <div class="input-field col s12">
+                  <a class='btn modal-trigger' href='#modal-drought'><span class='material-icons'>info</span></a><span id ="delvarico" class="delvarico-drought">-</span> <label>Drought Risk</label><br>    
+                  <p class="range-field range-field-drought"><input type="range" id="drought_slider" value ="0" min="1" max="10" /> <output id="drought_value" name="drought_value">1<span></span></output></p>
+                  </div>
+                  </form>
+      
+                </span></div>
+                </li>
+              </ul>
+          </div>
+          <div class='topic_section_socio'>
+              <ul class="collapsible main_topic_section">
+                  <li class='disabled'>
+                      <div class="collapsible-header topic_section"><i class="material-icons">blur_on</i>Socio-political aspects​</div>
+                      <div class="collapsible-body topic_body"><span>
+                  <form action="#">
+                    <div class="input-field col s12">
+                      <a class='btn modal-trigger' href='#modal-foodsec'><span class='material-icons'>info</span></a><span id ="delvarico" class="delvarico-foodsec">-</span>  <label>Food Security​</label><br>    
+                      <p class="range-field range-field-foodsec"><input type="range" id="foodsec_th_slider" value ="0" min="1" max="10" /> <output id="foodsec_value" name="foodsec_value">1<span></span></output></p>
+                    </div>
+                  </form>
+                  <form action="#">
+                    <div class="input-field col s12">
+                      <a class='btn modal-trigger' href='#modal-conflict'><span class='material-icons'>info</span></a><span id ="delvarico" class="delvarico-conflict">-</span> <label>Armed conflict</label><br>    
+                      <p class="range-field range-field-conflict"><input type="range" id="conflict_slider" value ="0" min="1" max="10" /> <output id="conflict_value" name="conflict_value">1<span></span></output></p>
+                    </div>
+                  </form>
+                  <form action="#">
+                    <div class="input-field col s12">
+                      <a class='btn modal-trigger' href='#modal-refugee'><span class='material-icons'>info</span></a><span id ="delvarico" class="delvarico-refugee">-</span> <label>Refugee camps</label><br>    
+                      <p class="range-field range-field-refugee"><input type="range" id="refugee_slider" value ="0" min="1" max="10" /> <output id="refugee_value" name="refugee_value">1<span></span></output></p>
+                    </div>
+                  </form>   
+                  <form action="#">
+                    <div class="input-field col s12">
+                      <a class='btn modal-trigger' href='#modal-sanitationaccess'><span class='material-icons'>info</span></a><span id ="delvarico" class="delvarico-sanitationaccess">-</span> <label>Access to Sanitation</label><br>    
+                      <p class="range-field range-field-sanitationaccess"><input type="range" id="sanitationaccess_slider" value ="0" min="1" max="10" /> <output id="sanitationaccess_value" name="sanitationaccess_value">1<span></span></output></p>
+                    </div>
+                  </form>   
+                </span></div>
+                </li>
+              </ul>
+          </div>
+          <form action="#">
+          <div class="input-field col s12" >
+          <span class="delvarico-all">-</span> <label id = "all-var">Remove all avariables </label>
+          </div>
+          </form> 
+            <form action="#">
+              <p>
+                <label>
+                  <input type="checkbox" class="checkbox_check" />
+                  <span>No-Go Areas</span>
+                </label>
+              </p>
+            </form>
+        </span></div>
+        <div class='topic_section_submit'>
+              <button id="submit">Submit</button> 
+            </div>
+        
+      </li>
+    </ul>
+          
+
+  </div>
+
+
+  <div class='calculation-box' data-html2canvas-ignore="true">
+    <ul class="collapsible popout">
+      <li>
+        <div class="collapsible-header"><i class="material-icons">select_all</i>Area selected</div>
+        <div class="collapsible-body"><span><div id='polygon_out_main_area'></div></span></div>
+      </li>
+      <li>
+        <div class="collapsible-header"><i class="material-icons">bar_chart</i>Resources</div>
+        <div class="collapsible-body"><span><div id='polygon_out_main'></div></span></div>
+      </li>
+      <li>
+        <div class="collapsible-header"><i class="material-icons">eco</i>What makes this area special </div>
+        <div class="collapsible-body"><span><div id='polygon_out_main_2'></div></span></div>
+      </li>
+    </ul>
+    <div class='download_stats'></div>
+    <div class='download_map'><a id="download_map" href="" download="map_scenario.png">Download map</a></div>
+    <!-- <div class='calculation-box_title_2'></div>
+    <div id='polygon_out_main_2'></div>
+    <div class='calculation-box_title'></div>
+    <div id='polygon_out_main'></div> -->
+
+ </div>
+
+
+
+
+ <div id="image"></div>
+
+ <div id="point_scores"></div>
+<div id="mainpopup"><div id="closepopup" class="collapsed"><span class="material-icons closepopup">dehaze</span></div><div id="popup" class="collapsed">Hover features on the map to get results in this window.</div></div> 
+<div class="legend"> 
+  </div>
+  <script src='app/app.js'></script>
+
+</body>
+</html>
